@@ -317,78 +317,82 @@
   </div>
 </div>
 
-
+<!--START CHECKBOX COPY & PASTE HERE-->
 <!-- Multiple Check boxes (In-line now) -->
 <div class="form-group">
+  <div id="limiter"
   <label class="col-md-4 control-label" for="checkboxes">Interests:</label>
   <div class="col-md-4">
-    <label class="checkbox" for="checkboxes-0">
-      <input type="checkbox" name="checkboxes" id="checkboxes-0" value="1">
+    <label class="checkbox" id="checkboxes-0">
+      <input type="checkbox" name="checkboxes" id="checkboxes-0" value="">
      Beds
     </label>
-    <label class="checkbox" for="checkboxes-1">
-      <input type="checkbox" name="checkboxes" id="checkboxes-1" value="2">
+    <label class="checkbox" id="checkboxes-1">
+      <input type="checkbox" name="checkboxes" id="checkboxes-1" value="">
      Side Tables
     </label>
-    <label class="checkbox" for="checkboxes-2">
-      <input type="checkbox" name="checkboxes" id="checkboxes-2" value="3">
+    <label class="checkbox" id="checkboxes-2">
+      <input type="checkbox" name="checkboxes" id="checkboxes-2" value="">
      Closets
     </label>
-    <label class="checkbox" for="checkboxes-3">
-      <input type="checkbox" name="checkboxes" id="checkboxes-3" value="4">
+    <label class="checkbox" id="checkboxes-3">
+      <input type="checkbox" name="checkboxes" id="checkboxes-3" value="">
      Couches
     </label>
-    <label class="checkbox" for="checkboxes-4">
-      <input type="checkbox" name="checkboxes" id="checkboxes-4" value="5">
+    <label class="checkbox" id="checkboxes-4">
+      <input type="checkbox" name="checkboxes" id="checkboxes-4" value="">
     Shelves
     </label>
-    <label class="checkbox" for="checkboxes-5">
-      <input type="checkbox" name="checkboxes" id="checkboxes-5" value="6">
+    <label class="checkbox" id="checkboxes-5">
+      <input type="checkbox" name="checkboxes" id="checkboxes-5" value="">
   Lamps
     </label>
-    <label class="checkbox" for="checkboxes-6">
-      <input type="checkbox" name="checkboxes" id="checkboxes-6" value="7">
+    <label class="checkbox" id="checkboxes-6">
+      <input type="checkbox" name="checkboxes" id="checkboxes-6" value="">
    Consoles
     </label>
-    <label class="checkbox" for="checkboxes-7">
+    <label class="checkbox" id="checkboxes-7">
       <input type="checkbox" name="checkboxes" id="checkboxes-7"
-      value="8">
+      value="">
     Dining Room tables
     </label>
-    <label class="checkbox" for="checkboxes-8">
-      <input type="checkbox" name="checkboxes" id="checkboxes-8" value="9">
+    <label class="checkbox" id="checkboxes-8">
+      <input type="checkbox" name="checkboxes" id="checkboxes-8" value="">
      Chairs
     </label>
-    <label class="checkbox" for="checkboxes-9">
-      <input type="checkbox" name="checkboxes" id="checkboxes-9" value="10">
+    <label class="checkbox" id="checkboxes-9">
+      <input type="checkbox" name="checkboxes" id="checkboxes-9" value="">
       Hanging Lights
     </label>
-    <label class="checkbox" for="checkboxes-10">
-      <input type="checkbox" name="checkboxes" id="checkboxes-10" value="11">
+    <label class="checkbox" id="checkboxes-10">
+      <input type="checkbox" name="checkboxes" id="checkboxes-10" value="">
      Fire Pits
     </label>
-    <label class="checkbox" for="checkboxes-11">
-      <input type="checkbox" name="checkboxes" id="checkboxes-11" value="12">
+    <label class="checkbox" id="checkboxes-11">
+      <input type="checkbox" name="checkboxes" id="checkboxes-11" value="">
      Patio Furniture
     </label>
-    <label class="checkbox" for="checkboxes-12">
-      <input type="checkbox" name="checkboxes" id="checkboxes-12" value="13">
+    <label class="checkbox" id="checkboxes-12">
+      <input type="checkbox" name="checkboxes" id="checkboxes-12" value="">
       Cushions
     </label>
-    <label class="checkbox" for="checkboxes-13">
-      <input type="checkbox" name="checkboxes" id="checkboxes-13" value="14">
+    <label class="checkbox" id="checkboxes-13">
+      <input type="checkbox" name="checkboxes" id="checkboxes-13" value="">
       Mirrors
     </label>
-    <label class="checkbox" for="checkboxes-14">
-      <input type="checkbox" name="checkboxes" id="checkboxes-14" value="15">
+    <label class="checkbox" id="checkboxes-14">
+      <input type="checkbox" name="checkboxes" id="checkboxes-14" value="">
      Outdoor Kitchens
-      <label class="checkbox" for="checkboxes-14">
-      <input type="checkbox" name="checkboxes" id="checkboxes-14" value="16">
+      <label class="checkbox" id="checkboxes-14">
+      <input type="checkbox" name="checkboxes" id="checkboxes-14" value="">
       Accessories 
     </label> 
     </label>
  </div>
 </div>
+</div>
+
+<!--END CHECKBOX COPY & PASTE HERE-->
 
 <!--Color Picker-->
 <div class="form-group">
@@ -580,19 +584,48 @@
     })
   </script>
 
+<!--START CHECKBOX JS COPY & PASTE HERE-->
+
+  <script src='https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js'></script>
+
 <script>
-$(document).ready(function () {
-   $("input[name='checkboxes']").change(function () {
-      var maxAllowed = 8;
-      var cnt = $("input[name='checkboxes']:checked").length;
-      if (cnt > maxAllowed)
-      {
-         $(this).prop("checked", "");
-         alert('Select maximum of ' + maxAllowed + ' interests!');
-     }
+// Add code to the < head > of your site
+// or into the init.js file of theme 
+jQuery(document).ready(function($) { // this line is important for WP
+
+  // Function to check and disable checkbox
+  function limit_checked( element, size ) {
+    var bol = $( element + ':checked').length >= size;
+    $(element).not(':checked').attr('disabled',bol);
+  }
+
+  // List of checkbox groups to check
+  var check_elements = [
+    { id: '#limiter input[type=checkbox]', size: 8},
+    { id: '#cf_group_id input[type=checkbox]', size: 1 }
+    
+  ];
+
+  // Run function for each group in list
+  $(check_elements).each( function(index, element) {
+    // Limit checked on window load
+    $(window).load( function() {
+      limit_checked( element.id, element.size );
+    })
+
+  
+
+    // Limit checked on click
+    $(element.id).click(function() {
+      limit_checked( element.id, element.size );
+    });
+
   });
+
 });
 </script>
+
+<!--END CHECKBOX JS COPY & PASTE HERE-->
 
 
 
