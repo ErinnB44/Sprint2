@@ -3,7 +3,11 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--added by jess for validation errors-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--end of what jess added here-->
+
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="">
@@ -13,6 +17,11 @@
 
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="bootstrap.min.css">
+
+    <!--added by jess for validation errors-->
+    <script src="js/respond.min.js"></script>
+    <link type="text/css" rel="stylesheet"  href="style.css"/>
+    <!--end of what jess added here-->
     
     <!--IMAGE UPLOADER-->
     <script src="js/avatar_test.js"></script>
@@ -84,21 +93,27 @@
     </div> <!-- /container -->
 
     
+<!--jess greyed this out-->
+<!-- Form  
+<legend>Please Fill Out Your Info Below</legend>-->
 
-<!-- Form  -->
-<legend>Please Fill Out Your Info Below</legend>
 
 
+<!--added by jess for validation errors-->
+<!-- jumbotron -->
+  <form class="well form-horizontal" action="" method="post"  id="contact_form">
+  <fieldset>
+
+<!--Text Input-->
 
 <!--First Name-->
-<form class="well form-horizontal bv-form" action="" method="post" id="contact_form" novalidate="novalidate">
+
 <div class="form-group">
   <label class="col-md-4 control-label">First Name:</label>  
   <div class="col-md-4 inputGroupContainer">
   <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-  <input type="text" name="username" placeholder="Please create a username" class="form-control" ng-model="user.firstname" ng-required="true">
-  <p class="error validationerror" ng-show="myform.firstname.$invalid && myform.firstname.$touched">You must fill out your first name.</p>
+  <input  name="first_name" placeholder="First Name" class="form-control"  type="text">
     </div>
   </div>
 </div>
@@ -214,7 +229,7 @@
 </div>
 </div>
 
-<!-- Text Field-->
+<!--zip code-->
 
 <div class="form-group">
   <label class="col-md-4 control-label">Zip Code:</label>  
@@ -229,7 +244,7 @@
 <!--Birthday-->
 
 <div class="form-group">
-  <label class="col-md-4 control-label">Birthdate:</label>  
+  <label class="col-md-4 control-label">Birthdate (MM/DD/YY):</label>  
     <div class="col-md-4 inputGroupContainer">
     <div class="input-group">
         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
@@ -261,6 +276,7 @@
   </div>
   </div>
 </div>
+<!--end of what jess added here-->
 
 <!--IMAGE UPLOADER -->
 <div class="form-group">
@@ -545,6 +561,26 @@
       pretendUpload: true
     })
   </script>
+
+<!--added by jess for validation errors-->
+<script>
+$(document).ready(function () {
+
+   $("input[name='checkboxes']").change(function () {
+      var maxAllowed = 8;
+      var cnt = $("input[name='checkboxes']:checked").length;
+      if (cnt > maxAllowed)
+      {
+         $(this).prop("checked", "");
+         alert('Select maximum of ' + maxAllowed + ' interests!');
+     }
+
+  });
+
+});
+</script>
+<!--end of what was added by jess here-->
+
 
 <!--START CHECKBOX JS COPY & PASTE HERE-->
 
